@@ -4,7 +4,7 @@ import datetime
 import csv
 
 ser = serial.Serial('/dev/cu.usbmodem1411', 9600, timeout=0)
-my_file = 'data.csv'
+my_file = 'jared.csv'
 
 f = open(my_file, 'wt')
 writer = csv.writer(f)
@@ -17,10 +17,12 @@ while True:
 
         # print out to screen
         # TODO: make the prints only once a second, stdout can't keep up
-        line = '%s,%s\n' % (datetime.datetime.now(), ser.readline())
-        print line.strip()
+        analog_value = ser.readline()
+        if analog_value:
+            line = '%s,%s\n' % (datetime.datetime.now(), analog_value)
+            print line.strip()
 
-        time.sleep(.2)  # 200 milliseconds
+        time.sleep(.01)  # 200 milliseconds
 
     except ser.SerialTimeoutException:
         print('Data could not be read')
