@@ -17,12 +17,12 @@ while True:
 
         # print out to screen
         # TODO: make the prints only once a second, stdout can't keep up
-        analog_value = ser.readline()
+        analog_value = ser.readline().strip()
         if analog_value:
             line = '%s,%s\n' % (datetime.datetime.now(), analog_value)
             print line.strip()
 
-        time.sleep(.01)  # 200 milliseconds
+        time.sleep(.001)
 
     except ser.SerialTimeoutException:
         print('Data could not be read')
