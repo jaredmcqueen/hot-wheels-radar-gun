@@ -4,7 +4,7 @@ import datetime
 import csv
 
 ser = serial.Serial('/dev/cu.usbmodem1411', 9600, timeout=0)
-my_file = 'jared.csv'
+my_file = 'data.csv'
 
 f = open(my_file, 'wt')
 writer = csv.writer(f)
